@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="conststruts.devMode" value="true"/>
+	<!-- Struts2的所有Action都需位于package下 -->
+	<package name="lee" extends="struts-default">
+		<action name="searchguitar" class="action.searchGuitar" method="search">
+			<result name="success" >/WEB-INF/content/SearchResults.jsp</result>
+			<result name="error" >/WEB-INF/content/null.jsp</result>
+		</action>
+		<action name="guitarlist" class="action.guitarAction" method="getGuitarlist">
+			<result name="success" >/WEB-INF/content/List.jsp</result>
+			<result name="error" >/WEB-INF/content/null.jsp</result>
+		</action>
+		<action name="add" class="action.guitarAction" method="addGuitar">
+			<result name="success" >/WEB-INF/content/success.jsp</result>
+			<result name="error" >/WEB-INF/content/null.jsp</result>
+		</action>
+		<action name="delete" class="action.guitarAction" method="deleteGuitar">
+			<result name="success" type="chain">List</result>
+			<result name="error" >/WEB-INF/content/null.jsp</result>
+		</action>
+		<action name="*">
+			<result>/WEB-INF/content/{1}.jsp</result>
+		</action>
+	</package>
+</struts>
